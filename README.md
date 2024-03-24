@@ -1,1 +1,1 @@
-##Hópverkefni Viðmótsforritun
+## Hópverkefni Viðmótsforritun

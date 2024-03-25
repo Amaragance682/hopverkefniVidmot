@@ -19,8 +19,6 @@ public class HelloApplication extends Application {
         Pane root = fxmlLoader.load();
         Scene scene = new Scene(root, WIDTH, HEIGHT);
 
-        Food food = new Food(WIDTH, HEIGHT);
-        root.getChildren().add(food.getRectangle());
 
         stage.setTitle("Snake");
         stage.setScene(scene);

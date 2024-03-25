@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.StrokeLineCap;
 import javafx.scene.transform.Rotate;
 import javafx.scene.layout.Pane;
 import javafx.util.Duration;
@@ -115,18 +116,25 @@ public class HelloController {
 
     private void growSnake() {
         // Create a new rectangle for the body
-        Rectangle newBody = new Rectangle(100, 70, Color.GREEN);
+        Rectangle newBody = new Rectangle(70, 100, Color.GREEN);
 
         // Position the new body section at the current tail position
         newBody.setX(tail.getX());
         newBody.setY(tail.getY());
+
+        // Set the rotation of the new body section to match the tail's rotation
+        Rotate newBodyRotation = new Rotate();
+        newBodyRotation.setAngle(tailRotation.getAngle());
+        newBody.getTransforms().add(newBodyRotation);
 
         // Add the new body section to the root pane
         root.getChildren().add(newBody);
 
         // Update the tail reference to the new body section
         tail = newBody;
+        tailRotation = newBodyRotation;
     }
+
 
     private void moveHead() {
         player.setLayoutX(player.getLayoutX() + 4*VectorCalc.calcMoveX(rotation.getAngle()));

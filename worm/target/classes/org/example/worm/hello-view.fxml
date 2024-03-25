@@ -8,9 +8,9 @@
    <AnchorPane>
    <children>
       <Button mnemonicParsing="false" onKeyPressed="#movementPressHandler" onKeyReleased="#movementReleaseHandler" opacity="0.0" text="Button" />
-      <Rectangle fx:id="player" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="100.0" nodeOrientation="LEFT_TO_RIGHT" stroke="BLACK" strokeType="INSIDE" translateX="-70.0" translateY="-50.0" width="70.0" />
-      <Rectangle fx:id="body" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="100.0" nodeOrientation="LEFT_TO_RIGHT" stroke="BLACK" strokeType="INSIDE" translateX="-140.0" translateY="-50.0" width="70.0" />
-      <Rectangle fx:id="tail" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="100.0" nodeOrientation="LEFT_TO_RIGHT" stroke="BLACK" strokeType="INSIDE" translateX="-140.0" translateY="-50.0" width="70.0" />
+      <Rectangle fx:id="player" arcHeight="5.0" arcWidth="5.0" fill="GREEN" height="100.0" nodeOrientation="LEFT_TO_RIGHT" stroke="BLACK" strokeType="INSIDE" translateX="-70.0" translateY="-50.0" width="70.0" />
+      <Rectangle fx:id="body" arcHeight="5.0" arcWidth="5.0" fill="GREEN" height="100.0" nodeOrientation="LEFT_TO_RIGHT" stroke="BLACK" strokeType="INSIDE" translateX="-140.0" translateY="-50.0" width="70.0" />
+      <Rectangle fx:id="tail" arcHeight="5.0" arcWidth="5.0" fill="GREEN" height="100.0" nodeOrientation="LEFT_TO_RIGHT" stroke="BLACK" strokeType="INSIDE" translateX="-140.0" translateY="-50.0" width="70.0" />
    </children>
    </AnchorPane>
 </Pane>

@@ -1,2 +1,2 @@
-## Hópverkefni Viðmótsforritun
-# Snake Clone
+# Hópverkefni Viðmótsforritun
+## Snake Clone

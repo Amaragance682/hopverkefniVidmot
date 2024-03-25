@@ -1,1 +1,2 @@
 ## Hópverkefni Viðmótsforritun
+# Snake Clone

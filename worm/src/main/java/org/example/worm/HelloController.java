@@ -43,6 +43,12 @@ public class HelloController {
             case D:
                 right=true;
                 break;
+            case LEFT:
+                left=true;
+                break;
+            case RIGHT:
+                right=true;
+                break;
             default:
                 break;
         }
@@ -55,6 +61,12 @@ public class HelloController {
                 left=false;
                 break;
             case D:
+                right=false;
+                break;
+            case LEFT:
+                left=false;
+                break;
+            case RIGHT:
                 right=false;
                 break;
             default:

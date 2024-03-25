@@ -6,11 +6,20 @@ import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.paint.Color;
 import javafx.scene.transform.Rotate;
+import javafx.scene.layout.Pane;
 import javafx.util.Duration;
 import vinnsla.VectorCalc;
+import vinnsla.Food;
 
 public class HelloController {
+    @FXML
+    private Pane root; // This should be the id of your root pane in your FXML file
+
+    private static final int WIDTH = 600;
+    private static final int HEIGHT = 600;
+
     @FXML
     private Rectangle player;
     private Rotate rotation = new Rotate();
@@ -24,6 +33,8 @@ public class HelloController {
     @FXML
     private Rectangle tail;
     private Rotate tailRotation = new Rotate();
+
+    private Food food;
 
     private boolean left;
     private boolean right;
@@ -102,6 +113,21 @@ public class HelloController {
         }
     }
 
+    private void growSnake() {
+        // Create a new rectangle for the body
+        Rectangle newBody = new Rectangle(100, 70, Color.GREEN);
+
+        // Position the new body section at the current tail position
+        newBody.setX(tail.getX());
+        newBody.setY(tail.getY());
+
+        // Add the new body section to the root pane
+        root.getChildren().add(newBody);
+
+        // Update the tail reference to the new body section
+        tail = newBody;
+    }
+
     private void moveHead() {
         player.setLayoutX(player.getLayoutX() + 4*VectorCalc.calcMoveX(rotation.getAngle()));
         player.setLayoutY(player.getLayoutY() + 5*VectorCalc.calcMoveY(rotation.getAngle()));
@@ -112,6 +138,13 @@ public class HelloController {
             updateDirection();
             rotateHead();
             moveHead();
+
+            // Check for collision with food
+            if (player.getBoundsInParent().intersects(food.getRectangle().getBoundsInParent())) {
+                // Eat the food and grow
+                food.relocate();
+                growSnake();
+            }
         }));
         moveTimeline.setCycleCount(Animation.INDEFINITE);
         moveTimeline.play();
@@ -126,6 +159,10 @@ public class HelloController {
         tail.getTransforms().add(tailRotation);
         tailRotation.setPivotY(tail.getHeight()/2);
         tailRotation.setPivotX(tail.getWidth());
+
+
+        food = new Food(WIDTH, HEIGHT);
+        root.getChildren().add(food.getRectangle());
 
         player.layoutXProperty().addListener((observable, oldValue, newValue) -> {
             //body.setLayoutX(VectorCalc.calcNextX(player.getLayoutX(), rotation.getAngle(), player.getHeight()));
@@ -155,5 +192,7 @@ public class HelloController {
         body.boundsInParentProperty().addListener((observable, oldValue, newValue) -> {
             tailRotation.setAngle(bodyRotation.getAngle() - bodyDeltaRotation * 5);
         });
+
+
     }
 }

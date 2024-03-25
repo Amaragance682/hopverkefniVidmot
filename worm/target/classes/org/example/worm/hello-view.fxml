@@ -4,11 +4,13 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.shape.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.worm.HelloController">
+<Pane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.worm.HelloController">
+   <AnchorPane>
    <children>
       <Button mnemonicParsing="false" onKeyPressed="#movementPressHandler" onKeyReleased="#movementReleaseHandler" opacity="0.0" text="Button" />
       <Rectangle fx:id="player" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="100.0" nodeOrientation="LEFT_TO_RIGHT" stroke="BLACK" strokeType="INSIDE" translateX="-70.0" translateY="-50.0" width="70.0" />
       <Rectangle fx:id="body" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="100.0" nodeOrientation="LEFT_TO_RIGHT" stroke="BLACK" strokeType="INSIDE" translateX="-140.0" translateY="-50.0" width="70.0" />
       <Rectangle fx:id="tail" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="100.0" nodeOrientation="LEFT_TO_RIGHT" stroke="BLACK" strokeType="INSIDE" translateX="-140.0" translateY="-50.0" width="70.0" />
    </children>
-</AnchorPane>
+   </AnchorPane>
+</Pane>

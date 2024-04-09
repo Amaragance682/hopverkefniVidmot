@@ -13,11 +13,11 @@ public class VectorCalc {
         return y;
     }
 
-    public static double calcNextX(double x, double deg, double height) {
-        return x + Math.cos(Math.toRadians(deg)) * height;
+    public static double calcNextX(double x, double deg, double width) {
+        return x - Math.cos(Math.toRadians(deg)) * width;
     }
 
-    public static double calcNextY(double y, double deg, double width) {
-        return y + Math.sin(Math.toRadians(deg)) * width;
+    public static double calcNextY(double y, double deg, double height) {
+        return y - Math.sin(Math.toRadians(deg)) * height;
     }
 }

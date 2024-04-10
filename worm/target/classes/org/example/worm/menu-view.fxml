@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="org.example.worm.MenuController"
+            prefHeight="400.0" prefWidth="1000.0" >
+
+    <MenuBar prefHeight="26.0" prefWidth="1000.0">
+        <Menu text="File">
+            <MenuItem onAction="#handleNewGame" text="New Game" />
+            <MenuItem onAction="#handleQuit" text="Quit" />
+        </Menu>
+        <Menu text="Help">
+            <MenuItem onAction="#handleShowHelp" text="How to Play" />
+        </Menu>
+        <Menu text="Difficulty">
+            <items>
+                <RadioMenuItem fx:id="35" onAction="#handleDifficultyChange" selected="true" text="Easy" toggleGroup="$difficultyToggleGroup">
+                    <toggleGroup>
+                        <ToggleGroup fx:id="difficultyToggleGroup" />
+                    </toggleGroup>
+                </RadioMenuItem>
+                <RadioMenuItem fx:id="30" onAction="#handleDifficultyChange" text="Medium" toggleGroup="$difficultyToggleGroup" />
+                <RadioMenuItem fx:id="20" onAction="#handleDifficultyChange" text="Hard" toggleGroup="$difficultyToggleGroup" />
+            </items>
+        </Menu>
+
+    </MenuBar>
+</AnchorPane>

@@ -5,7 +5,7 @@
 
 
 
-buildið verkefnið svo opnið bara application og rennið forritið. java interpreter þarf að vera version 
+buildið verkefnið svo opnið bara application og rennið forritið. java interpreter þarf að vera version !!!!!!!!!21.0.1!!!!!!!!!
 
 verkefni:
 

@@ -13,6 +13,7 @@ import javafx.util.Duration;
 import vinnsla.VectorCalc;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class Worm extends AnchorPane {
 
@@ -30,6 +31,8 @@ public class Worm extends AnchorPane {
     private Rotate bodyRotation = new Rotate();
     private double bodyDeltaRotation;
 
+    private ArrayList<Body> bodySections = new ArrayList<>();
+
     @FXML
     private ImageView tail;
     private Rotate tailRotation = new Rotate();
@@ -38,6 +41,9 @@ public class Worm extends AnchorPane {
     private boolean right;
 
     private boolean up = false; // thetta er byggt af ola
+
+    public static int numberSegments;
+    private int speed = 5;
 
     private Timeline moveTimeline;
 
@@ -122,14 +128,15 @@ public class Worm extends AnchorPane {
     }
 
     private void moveHead() {
-        player.setLayoutX(player.getLayoutX() + 4*VectorCalc.calcMoveX(rotation.getAngle()));
-        player.setLayoutY(player.getLayoutY() + 5*VectorCalc.calcMoveY(rotation.getAngle()));
+        player.setLayoutX(player.getLayoutX() + speed*VectorCalc.calcMoveX(rotation.getAngle()));
+        player.setLayoutY(player.getLayoutY() + speed*VectorCalc.calcMoveY(rotation.getAngle()));
     }
 
     public void start() {
         if (moveTimeline != null) {
             moveTimeline.stop();
         }
+        this.setOpacity(1.0);
         player.setLayoutX(-100);
         player.setLayoutY(300);
         rotation.setAngle(0);
@@ -140,14 +147,34 @@ public class Worm extends AnchorPane {
         }));
         moveTimeline.setCycleCount(Animation.INDEFINITE);
         moveTimeline.play();
+    }
 
+    public void enlarge() {
+        Body body1 = new Body(last());
+        bodySections.add(body1);
+        this.getChildren().add(body1);
+        updateSegments();
     }
 
     public double[] getHeadPos() {
         return new double[]{player.getLayoutX() + player.getFitWidth()/2 * Math.cos(Math.toRadians(rotation.getAngle())), player.getLayoutY() + player.getFitWidth()/2 * Math.sin(Math.toRadians(rotation.getAngle()))};
     }
 
+    private Body last() {
+        return bodySections.get(bodySections.size()-1);
+    }
+
+    private void updateSegments() {
+        numberSegments = bodySections.size()+2;
+    }
+
     public void initialize() {
+
+        Body body1 = new Body(body, bodyRotation);
+        bodySections.add(body1);
+        this.getChildren().add(body1);
+
+        updateSegments();
 
         player.getTransforms().add(rotation);
         rotation.setPivotY(player.getFitHeight()/2);
@@ -176,21 +203,22 @@ public class Worm extends AnchorPane {
         });
 
         player.boundsInParentProperty().addListener((observable, oldValue, newValue) -> {
-            bodyRotation.setAngle(rotation.getAngle() - deltaRotation * 5);
-            if (deltaRotation > 0 && bodyDeltaRotation < 3) bodyDeltaRotation += 0.5/5.0;
-            if (deltaRotation < 0 && bodyDeltaRotation > -3) bodyDeltaRotation -= 0.5/5.0;
-            if (Math.round(deltaRotation) == 0) bodyDeltaRotation += bodyDeltaRotation > 0 ? -bodyDeltaRotation/5.0 : Math.abs(bodyDeltaRotation)/5.0;
+            //bodyRotation.setAngle(rotation.getAngle() - deltaRotation * 5);
+            //if (deltaRotation > 0 && bodyDeltaRotation < 3) bodyDeltaRotation += 0.5/5.0;
+            //if (deltaRotation < 0 && bodyDeltaRotation > -3) bodyDeltaRotation -= 0.5/5.0;
+            //if (Math.round(deltaRotation) == 0) bodyDeltaRotation += bodyDeltaRotation > 0 ? -bodyDeltaRotation/5.0 : Math.abs(bodyDeltaRotation)/5.0;
+            bodyRotation.setAngle(bodyRotation.getAngle() + (rotation.getAngle()-bodyRotation.getAngle())/40);
         });
 
-        body.layoutXProperty().addListener((observable, oldValue, newValue) -> {
-            tail.setLayoutX(body.getLayoutX() - (body.getFitWidth() - 10) * Math.cos(Math.toRadians(bodyRotation.getAngle())));
+        last().layoutXProperty().addListener((observable, oldValue, newValue) -> {
+            tail.setLayoutX(last().getLayoutX() - (last().getFitWidth() - 10) * Math.cos(Math.toRadians(last().rotation.getAngle())));
         });
-        body.layoutYProperty().addListener((observable, oldValue, newValue) -> {
-            tail.setLayoutY(body.getLayoutY() - (body.getFitWidth() - 10) * Math.sin(Math.toRadians(bodyRotation.getAngle())));
+        last().layoutYProperty().addListener((observable, oldValue, newValue) -> {
+            tail.setLayoutY(last().getLayoutY() - (last().getFitWidth() - 10) * Math.sin(Math.toRadians(last().rotation.getAngle())));
         });
 
-        body.boundsInParentProperty().addListener((observable, oldValue, newValue) -> {
-            tailRotation.setAngle(bodyRotation.getAngle() - bodyDeltaRotation * 5);
+        last().boundsInParentProperty().addListener((observable, oldValue, newValue) -> {
+            tailRotation.setAngle(tailRotation.getAngle() + (last().rotation.getAngle() - tailRotation.getAngle())/(40+numberSegments*5));
         });
     }
 }

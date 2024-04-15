@@ -7,6 +7,7 @@ import javafx.animation.Timeline;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.util.Duration;
@@ -58,12 +59,17 @@ public class GameController {
         }
     }
 
+    private Rectangle makeRectangle(Color color) {
+        Rectangle rectangle = new Rectangle();
+        rectangle.setHeight(700);
+        rectangle.setWidth(1300);
+        rectangle.setFill(color);
+        rectangle.setOpacity(0.0);
+        return rectangle;
+    }
+
     private void failure() {
-        Rectangle blackRectangle = new Rectangle();
-        blackRectangle.setHeight(600);
-        blackRectangle.setWidth(600);
-        blackRectangle.setFill(BLACK);
-        blackRectangle.setOpacity(0.0);
+        Rectangle blackRectangle = makeRectangle(BLACK);
         leikbord.getChildren().add(blackRectangle);
         Timeline failTimeline = new Timeline(new KeyFrame(Duration.millis(20), e -> {
             blackRectangle.setOpacity(blackRectangle.getOpacity() + 0.01);
@@ -75,18 +81,14 @@ public class GameController {
             failLabel.setText("failure...");
             failLabel.setFont(new Font("System Bold", 48));
             failLabel.setTextFill(WHITE);
-            failLabel.setLayoutX(200);
-            failLabel.setLayoutY(250);
+            failLabel.setLayoutX(570);
+            failLabel.setLayoutY(290);
             leikbord.getChildren().add(failLabel);
         });
     }
 
     private void victory() {
-        Rectangle whiteRectangle = new Rectangle();
-        whiteRectangle.setHeight(600);
-        whiteRectangle.setWidth(600);
-        whiteRectangle.setFill(WHITE);
-        whiteRectangle.setOpacity(0.0);
+        Rectangle whiteRectangle = makeRectangle(WHITE);
         leikbord.getChildren().add(whiteRectangle);
         Timeline victoryTimeline = new Timeline(new KeyFrame(Duration.millis(20), e -> {
             whiteRectangle.setOpacity(whiteRectangle.getOpacity() + 0.01);
@@ -95,16 +97,20 @@ public class GameController {
         victoryTimeline.play();
         victoryTimeline.setOnFinished(e -> {
             Label winLabel = new Label();
-            winLabel.setText("VICTORY???!");
+            winLabel.setText("VICTORY!!!");
             winLabel.setFont(new Font("System Bold", 48));
             winLabel.setTextFill(BLACK);
-            winLabel.setLayoutX(150);
-            winLabel.setLayoutY(250);
+            winLabel.setLayoutX(530);
+            winLabel.setLayoutY(290);
             leikbord.getChildren().add(winLabel);
         });
     }
     public void setDifficulty(int i) {
         stats.setDifficulty(i);
+    }
+
+    public Stats getStats() {
+        return stats;
     }
 
     public void initialize() {

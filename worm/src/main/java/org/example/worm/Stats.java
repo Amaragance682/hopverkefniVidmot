@@ -59,7 +59,7 @@ public class Stats extends AnchorPane {
     }
 
 
-    private void stop() {
+    public void stop() {
         if (timeTimeline != null) {
             timeTimeline.stop();
             klukka.reset();

@@ -7,9 +7,6 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-
-
-
 public class GameApplication extends Application {
 
     private Worm worm;
@@ -18,7 +15,7 @@ public class GameApplication extends Application {
 
 
         FXMLLoader loader = new FXMLLoader(GameApplication.class.getResource("/org/example/worm/main-view.fxml"));
-        Scene scene = new Scene(loader.load(), 600, 600);
+        Scene scene = new Scene(loader.load(), 1300, 700);
 
         primaryStage.setTitle("Only sigmas allowed");
 

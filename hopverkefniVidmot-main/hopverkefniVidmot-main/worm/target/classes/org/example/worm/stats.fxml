@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<fx:root type="javafx.scene.layout.AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea"
+            xmlns:fx="http://javafx.com/fxml/1">
+
+    <HBox layoutY="25.0" prefHeight="35.0" prefWidth="500.0" spacing="5">
+        <HBox prefHeight="35.0" prefWidth="339.0">
+            <children>
+                <Label alignment="CENTER_RIGHT" nodeOrientation="RIGHT_TO_LEFT" prefHeight="35.0" prefWidth="116.0" text="Time left: " textFill="White">
+                    <font>
+                        <Font name="System Bold" size="20.0" />
+                    </font>
+                </Label>
+                <Label fx:id="timer" alignment="CENTER_RIGHT" nodeOrientation="RIGHT_TO_LEFT" prefHeight="35.0" prefWidth="223.0" text="undetermined..." textFill="White">
+                    <font>
+                        <Font name="System Bold" size="20.0" />
+                    </font>
+                </Label>
+            </children>
+        </HBox>
+        <HBox prefHeight="35.0" prefWidth="233.0">
+            <children>
+                <Label contentDisplay="RIGHT" nodeOrientation="LEFT_TO_RIGHT" text="Points: " textFill="White">
+                    <font>
+                        <Font name="System Bold" size="20.0" />
+                    </font>
+                </Label>
+                <Label fx:id="score" contentDisplay="RIGHT" nodeOrientation="LEFT_TO_RIGHT" prefHeight="31.0" prefWidth="118.0" text="0" textFill="White">
+                    <font>
+                        <Font name="System Bold" size="20.0" />
+                    </font>
+                </Label>
+            </children>
+        </HBox>
+
+    </HBox>
+
+</fx:root>
